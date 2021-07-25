@@ -1,0 +1,12 @@
+<div class="todoContainer">
+    <input class="doneCheckbox" type="checkbox" [(ngModel)]="data.done" (change)="updateTodo()" >
+    <div class="todoEditable">
+        <input type="text" [(ngModel)]="data.description" class="description" (change)="updateTodo()" placeholder="Description">
+        <input *ngIf="showExtraDetail" class="extra" type="text" [(ngModel)]="data.label"(change)="updateTodo()" placeholder="Label">
+        <input *ngIf="showExtraDetail" class="extra" type="text" [(ngModel)]="data.category"  (change)="updateTodo()" placeholder="Category">
+    </div>
+    <button class="extraButton"  (click)="showExtraDetail = !showExtraDetail">&equiv;</button>
+    <button class="deleteButton" (click)="deleteTodo()">X</button>
+</div>
+
+

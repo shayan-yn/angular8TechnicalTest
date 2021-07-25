@@ -1,0 +1,29 @@
+<div class="filterSection">
+    <input #cb class="doneCheckbox" type="checkbox" (change)="applyFilters()">
+    <input #df class="searchBar" type="text" (keyup)="applyFilters()" placeholder="Search">
+</div>
+
+<div class="todoContainer">
+   <div *ngFor="let item of todoList">
+       <todo [data]="item" (deleted)="refreshData()" (updated)="refreshData()"></todo>
+   </div>
+   <div class="notFound" *ngIf="todoList.length == 0">No items found with selected filters ...</div>
+</div>
+
+<div class="utilityContainer">
+   <button class="addButton" *ngIf="!editingList" (click)="editingList = true">+</button>
+   <div *ngIf="editingList" [formGroup]="todoForm" class="formContainer" >
+       
+       <input class="formControl" type="text" placeholder="description" formControlName="descriptionControl"> 
+       <input class="formControl" type="text" placeholder="category" formControlName="categoryControl"> 
+       <input class="formControl" type="text" placeholder="label" formControlName="labelControl"> 
+       <button class="removeButton" *ngIf="editingList" (click)="editingList = false">X</button>
+   
+    </div>
+    <button *ngIf="editingList" class="addTodoButton" [disabled]="!todoForm.valid" (click)="addTodo()"> Save </button>
+</div>
+
+
+
+
+
